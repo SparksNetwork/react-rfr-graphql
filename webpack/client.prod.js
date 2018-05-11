@@ -11,7 +11,7 @@ module.exports = {
   entry: [
     'babel-polyfill',
     'fetch-everywhere',
-    path.resolve(__dirname, '../src/index.js')
+    path.resolve(__dirname, '../src/index.tsx')
   ],
   output: {
     filename: '[name].[chunkhash].js',
@@ -25,6 +25,19 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader'
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        // include: paths.appSrc,
+        use: [
+          {
+            loader: require.resolve('ts-loader'),
+            options: {
+              // disable type checker - we will use it in fork plugin
+              transpileOnly: true
+            }
+          }
+        ]
       },
       {
         test: /\.css$/,
@@ -41,7 +54,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.css']
+    extensions: ['.js', '.css', '.ts', '.tsx']
   },
   plugins: [
     new StatsPlugin('stats.json'),
