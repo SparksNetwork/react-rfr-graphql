@@ -30,6 +30,19 @@ module.exports = {
         use: 'babel-loader'
       },
       {
+        test: /\.(ts|tsx)$/,
+        // include: paths.appSrc,
+        use: [
+          {
+            loader: require.resolve('ts-loader'),
+            options: {
+              // disable type checker - we will use it in fork plugin
+              transpileOnly: true
+            }
+          }
+        ]
+      },
+      {
         test: /\.css$/,
         use: ExtractCssChunks.extract({
           use: {
