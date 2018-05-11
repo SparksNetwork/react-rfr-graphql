@@ -14,7 +14,7 @@ module.exports = {
     'fetch-everywhere',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
     'react-hot-loader/patch',
-    path.resolve(__dirname, '../src/index.js')
+    path.resolve(__dirname, '../src/index.tsx')
   ],
   output: {
     filename: '[name].js',
@@ -57,7 +57,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.css']
+    extensions: ['.js', '.css', '.ts', '.tsx']
   },
   plugins: [
     new WriteFilePlugin(), // used so you can see what chunks are produced in dev
